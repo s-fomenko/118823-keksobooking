@@ -114,3 +114,8 @@ var data = [
     }
   }
 ];
+
+
+var pageMap = document.querySelector('.map');
+pageMap.classList.remove('map--faded');
+
