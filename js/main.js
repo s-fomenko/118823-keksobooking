@@ -1,8 +1,7 @@
 'use strict';
 
-var mockData = [];
-
 var createMockData = function () {
+  var mockData = [];
   var type = ['palace', 'flat', 'house', 'bungalo'];
 
   for (var i = 1; i <= 8; i++) {
@@ -17,10 +16,14 @@ var createMockData = function () {
   return mockData;
 };
 
-createMockData();
+var mockData = createMockData();
 
-var pageMap = document.querySelector('.map');
-pageMap.classList.remove('map--faded');
+var makeMapActive = function () {
+  var pageMap = document.querySelector('.map');
+  pageMap.classList.remove('map--faded');
+};
+
+makeMapActive();
 
 var mapArea = document.querySelector('.map__pins');
 var mapPin = document.querySelector('#pin')
@@ -30,18 +33,23 @@ var mapPin = document.querySelector('#pin')
 var fragment = document.createDocumentFragment();
 
 var createPin = function (data) {
-  for (var i = 0; i < 8; i++) {
-    var item = mapPin.cloneNode(true);
-    item.style.left = data[i].location.x + 'px';
-    item.style.right = data[i].location.y + 'px';
-    item.querySelector('img').src = data[i].author.avatar;
-    item.querySelector('img').alt = data[i].offer.type;
-    fragment.appendChild(item);
-  }
-  return fragment;
+  var item = mapPin.cloneNode(true);
+  item.style.left = data.location.x + 'px';
+  item.style.top = data.location.y + 'px';
+  item.querySelector('img').src = data.author.avatar;
+  item.querySelector('img').alt = data.offer.type;
+  fragment.appendChild(item);
+
+  return item;
 };
 
-createPin(mockData);
+var createPins = function (data) {
+  data.forEach(function (item) {
+    fragment.appendChild(createPin(item));
+  });
+};
+
+createPins(mockData);
 
 mapArea.appendChild(fragment);
 
