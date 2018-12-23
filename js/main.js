@@ -41,8 +41,8 @@ var createPin = function (data) {
   return fragment;
 };
 
-// createPin(mockData);
-console.log(createPin(mockData));
+createPin(mockData);
+
+mapArea.appendChild(fragment);
 
 
-// console.log(data[i].author.avatar);
