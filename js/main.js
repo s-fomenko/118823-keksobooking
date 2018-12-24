@@ -16,41 +16,41 @@ var createMockData = function () {
   return mockData;
 };
 
-var mockData = createMockData();
-
 var makeMapActive = function () {
   var pageMap = document.querySelector('.map');
   pageMap.classList.remove('map--faded');
 };
 
-makeMapActive();
-
-var mapArea = document.querySelector('.map__pins');
-var mapPin = document.querySelector('#pin')
-  .content
-  .querySelector('.map__pin');
-
-var fragment = document.createDocumentFragment();
 
 var createPin = function (data) {
+  var mapPin = document.querySelector('#pin')
+    .content
+    .querySelector('.map__pin');
+
   var item = mapPin.cloneNode(true);
+
   item.style.left = data.location.x + 'px';
   item.style.top = data.location.y + 'px';
   item.querySelector('img').src = data.author.avatar;
   item.querySelector('img').alt = data.offer.type;
-  fragment.appendChild(item);
 
   return item;
 };
 
 var createPins = function (data) {
+  var fragment = document.createDocumentFragment();
+  var mapArea = document.querySelector('.map__pins');
+
   data.forEach(function (item) {
     fragment.appendChild(createPin(item));
   });
+
+  mapArea.appendChild(fragment);
 };
 
-createPins(mockData);
+var mockData = createMockData();
 
-mapArea.appendChild(fragment);
+makeMapActive();
+createPins(mockData);
 
 
