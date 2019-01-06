@@ -50,11 +50,31 @@ var createPins = function (data) {
 
 var mockData = createMockData();
 
-makeMapActive();
 // createPins(mockData);
 
+var makeFormdisabled = function () {
+  var fieldset = document.querySelectorAll('fieldset');
 
-var fieldset = document.querySelectorAll('.ad-form__element');
-fieldset.setAttribute('disabled', 'disabled');
+  fieldset.forEach(function (item) {
+    item.disabled = true;
+  });
+};
+
+var makeFormEnabled = function () {
+  var fieldset = document.querySelectorAll('fieldset');
+
+  fieldset.forEach(function (item) {
+    item.disabled = false;
+  });
+};
+
+makeFormdisabled();
+
+
+var mapPin = document.querySelector('.map__pin--main');
+mapPin.addEventListener('click', function () {
+  makeMapActive();
+  makeFormEnabled();
+});
 
 
