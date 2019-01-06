@@ -51,6 +51,10 @@ var createPins = function (data) {
 var mockData = createMockData();
 
 makeMapActive();
-createPins(mockData);
+// createPins(mockData);
+
+
+var fieldset = document.querySelectorAll('.ad-form__element');
+fieldset.setAttribute('disabled', 'disabled');
 
 
