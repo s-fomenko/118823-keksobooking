@@ -70,11 +70,14 @@ var makeFormEnabled = function () {
 
 makeFormdisabled();
 
+var adForm = document.querySelector('.ad-form');
+
 
 var mapPin = document.querySelector('.map__pin--main');
 mapPin.addEventListener('click', function () {
   makeMapActive();
   makeFormEnabled();
+  adForm.classList.remove('ad-form--disabled');
 });
 
 
