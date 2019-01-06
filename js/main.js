@@ -50,7 +50,6 @@ var createPins = function (data) {
 
 var mockData = createMockData();
 
-// createPins(mockData);
 
 var makeFormdisabled = function () {
   var fieldset = document.querySelectorAll('fieldset');
@@ -71,11 +70,16 @@ var makeFormEnabled = function () {
 makeFormdisabled();
 
 var adForm = document.querySelector('.ad-form');
-
-
 var mapPin = document.querySelector('.map__pin--main');
+var addressInput = document.getElementById('address');
+var position = mapPin.getBoundingClientRect();
+var PIN_SIZE = 65;
+
+addressInput.value = (position.left + (PIN_SIZE / 2)) + ', ' + (position.top + (PIN_SIZE / 2));
+
 mapPin.addEventListener('click', function () {
   makeMapActive();
+  createPins(mockData);
   makeFormEnabled();
   adForm.classList.remove('ad-form--disabled');
 });
