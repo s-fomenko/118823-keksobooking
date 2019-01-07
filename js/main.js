@@ -9,7 +9,7 @@ var createMockData = function () {
 
     dataItem.author = {'avatar': 'img/avatars/user0' + i + '.png'};
     dataItem.offer = {'type': type[Math.floor(Math.random() * type.length)]};
-    dataItem.location = {'x': Math.floor(Math.random() * 1200), 'y': Math.floor(Math.random() * 131 + 500)};
+    dataItem.location = {'x': Math.floor(Math.random() * 1200), 'y': Math.floor(Math.random() * 131 + 250)};
 
     mockData.push(dataItem);
   }
@@ -72,12 +72,11 @@ makeFormdisabled();
 var adForm = document.querySelector('.ad-form');
 var mapPin = document.querySelector('.map__pin--main');
 var addressInput = document.getElementById('address');
-var position = mapPin.getBoundingClientRect();
 var PIN_SIZE = 65;
 
-addressInput.value = (position.left + (PIN_SIZE / 2)) + ', ' + (position.top + (PIN_SIZE / 2));
+addressInput.value = (mapPin.offsetLeft + (PIN_SIZE / 2)) + ', ' + (mapPin.offsetTop + (PIN_SIZE / 2));
 
-mapPin.addEventListener('click', function () {
+mapPin.addEventListener('mouseup', function () {
   makeMapActive();
   createPins(mockData);
   makeFormEnabled();
