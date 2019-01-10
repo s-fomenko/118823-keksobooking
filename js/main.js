@@ -9,7 +9,7 @@ var createMockData = function () {
 
     dataItem.author = {'avatar': 'img/avatars/user0' + i + '.png'};
     dataItem.offer = {'type': type[Math.floor(Math.random() * type.length)]};
-    dataItem.location = {'x': Math.floor(Math.random() * 1200), 'y': Math.floor(Math.random() * 131 + 250)};
+    dataItem.location = {'x': Math.floor(Math.random() * 1200), 'y': Math.floor(Math.random() * 600)};
 
     mockData.push(dataItem);
   }
