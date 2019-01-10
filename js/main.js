@@ -83,4 +83,32 @@ mapPin.addEventListener('mouseup', function () {
   adForm.classList.remove('ad-form--disabled');
 });
 
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+var createMapCard = function (data) {
+  var mapCard = document.querySelector('#card')
+    .content
+    .querySelector('.map__card');
+
+  var item = mapCard.cloneNode(true);
+
+  item.querySelector('.popup__avatar').src = data.author.avatar;
+  item.querySelector('.popup__type').textContent = data.offer.type;
+
+  return item;
+};
+
+var createMapCards = function (data) {
+  var fragment = document.createDocumentFragment();
+  var cardsArea = document.querySelector('body');
+
+  data.forEach(function (item) {
+    fragment.appendChild(createMapCard(item));
+  });
+
+  cardsArea.appendChild(fragment);
+};
+
+createMapCards(mockData);
+
 
