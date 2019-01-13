@@ -80,15 +80,13 @@ var createMockData = function () {
       'checkout': time[Math.floor(Math.random() * time.length)],
       'features': createFeaturesList(features),
       'description': '',
-      'photos': createPhotosList(features)
+      'photos': createPhotosList(photos)
     };
 
     mockData.push(dataItem);
   }
   return mockData;
 };
-
-console.log(createMockData());
 
 var makeMapActive = function () {
   var pageMap = document.querySelector('.map');
@@ -159,7 +157,7 @@ mapPin.addEventListener('mouseup', function () {
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-/* var createMapCard = function (data) {
+var createMapCard = function (data) {
   var mapCard = document.querySelector('#card')
     .content
     .querySelector('.map__card');
@@ -167,7 +165,17 @@ mapPin.addEventListener('mouseup', function () {
   var item = mapCard.cloneNode(true);
 
   item.querySelector('.popup__avatar').src = data.author.avatar;
+  item.querySelector('.popup__title').textContent = data.offer.title;
+  item.querySelector('.popup__text--address').textContent = data.offer.address;
+  item.querySelector('.popup__text--price').textContent = data.offer.price;
   item.querySelector('.popup__type').textContent = data.offer.type;
+  item.querySelector('.popup__text--capacity').textContent = data.offer.rooms + ' комнаты для ' + data.offer.guests + ' гостей';
+  item.querySelector('.popup__text--time').textContent = 'Заезд после ' + data.offer.checkin + ', выезд до ' + data.offer.checkout;
+  item.querySelector('.popup__description').textContent = data.offer.description;
+  var popupPhoto = item.querySelectorAll('.popup__photo');
+  popupPhoto.forEach(function (photoItem, i) {
+    photoItem.src = data.offer.photos[i];
+  });
 
   return item;
 };
@@ -183,6 +191,6 @@ var createMapCards = function (data) {
   cardsArea.appendChild(fragment);
 };
 
-createMapCards(mockData);*/
+createMapCards(mockData);
 
 
