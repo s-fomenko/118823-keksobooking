@@ -55,7 +55,7 @@ var createMockData = function () {
 
   var createPhotosList = function (arr) {
 
-    var compareRandom = function (a, b) {
+    var compareRandom = function () {
       return Math.random() - 0.5;
     };
 
@@ -167,7 +167,7 @@ var createMapCard = function (data) {
   item.querySelector('.popup__avatar').src = data.author.avatar;
   item.querySelector('.popup__title').textContent = data.offer.title;
   item.querySelector('.popup__text--address').textContent = data.offer.address;
-  item.querySelector('.popup__text--price').textContent = data.offer.price;
+  item.querySelector('.popup__text--price').textContent = data.offer.price.toLocaleString('ru') + ' ₽/ночь';
   item.querySelector('.popup__type').textContent = data.offer.type;
   item.querySelector('.popup__text--capacity').textContent = data.offer.rooms + ' комнаты для ' + data.offer.guests + ' гостей';
   item.querySelector('.popup__text--time').textContent = 'Заезд после ' + data.offer.checkin + ', выезд до ' + data.offer.checkout;
