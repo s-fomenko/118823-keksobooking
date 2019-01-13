@@ -2,19 +2,93 @@
 
 var createMockData = function () {
   var mockData = [];
-  var type = ['palace', 'flat', 'house', 'bungalo'];
+  var title = [
+    'Большая уютная квартира',
+    'Маленькая неуютная квартира',
+    'Огромный прекрасный дворец',
+    'Маленький ужасный дворец',
+    'Красивый гостевой домик',
+    'Некрасивый негосеприимный домик',
+    'Уютное бунгало далеко от моря',
+    'Неуютное бунгало по колено в воде'
+  ];
 
-  for (var i = 1; i <= 8; i++) {
+  var type = [
+    'palace',
+    'flat',
+    'house',
+    'bungalo'
+  ];
+
+  var time = [
+    '12:00',
+    '13:00',
+    '14:00'
+  ];
+
+  var features = [
+    'wifi',
+    'dishwasher',
+    'parking',
+    'washer',
+    'elevator',
+    'conditioner'
+  ];
+
+  var photos = [
+    'http://o0.github.io/assets/images/tokyo/hotel1.jpg',
+    'http://o0.github.io/assets/images/tokyo/hotel2.jpg',
+    'http://o0.github.io/assets/images/tokyo/hotel3.jpg'
+  ];
+
+  var createFeaturesList = function (arr) {
+    var newArray = [];
+    arr.filter(function (item) {
+      if (Math.floor(Math.random() * (6 - 1) + 1) < Math.floor(Math.random() * (6 - 1) + 1)) {
+        return item;
+      }
+      newArray.push(item);
+      return newArray;
+    });
+    return newArray;
+  };
+
+  var createPhotosList = function (arr) {
+
+    var compareRandom = function (a, b) {
+      return Math.random() - 0.5;
+    };
+
+    arr.sort(compareRandom);
+
+    return arr;
+  };
+
+  for (var i = 0; i < 8; i++) {
     var dataItem = {};
 
-    dataItem.author = {'avatar': 'img/avatars/user0' + i + '.png'};
-    dataItem.offer = {'type': type[Math.floor(Math.random() * type.length)]};
+    dataItem.author = {'avatar': 'img/avatars/user0' + (i + 1) + '.png'};
     dataItem.location = {'x': Math.floor(Math.random() * 1200), 'y': Math.floor(Math.random() * 600)};
+    dataItem.offer = {
+      'title': title[i],
+      'address': dataItem.location.x + ', ' + dataItem.location.y,
+      'price': Math.floor(Math.random() * (1000000 - 1000) + 1000),
+      'type': type[Math.floor(Math.random() * type.length)],
+      'rooms': Math.floor(Math.random() * (5 - 1) + 1),
+      'guests': Math.floor(Math.random() * 10),
+      'checkin': time[Math.floor(Math.random() * time.length)],
+      'checkout': time[Math.floor(Math.random() * time.length)],
+      'features': createFeaturesList(features),
+      'description': '',
+      'photos': createPhotosList(features)
+    };
 
     mockData.push(dataItem);
   }
   return mockData;
 };
+
+console.log(createMockData());
 
 var makeMapActive = function () {
   var pageMap = document.querySelector('.map');
@@ -85,7 +159,7 @@ mapPin.addEventListener('mouseup', function () {
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-var createMapCard = function (data) {
+/* var createMapCard = function (data) {
   var mapCard = document.querySelector('#card')
     .content
     .querySelector('.map__card');
@@ -109,6 +183,6 @@ var createMapCards = function (data) {
   cardsArea.appendChild(fragment);
 };
 
-createMapCards(mockData);
+createMapCards(mockData);*/
 
 
