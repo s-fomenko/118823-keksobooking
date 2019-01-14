@@ -180,7 +180,7 @@ var createMapCard = function (data) {
   return item;
 };
 
-var createMapCards = function (data) {
+/* var createMapCards = function (data) {
   var fragment = document.createDocumentFragment();
   var cardsArea = document.querySelector('body');
 
@@ -191,6 +191,14 @@ var createMapCards = function (data) {
   cardsArea.appendChild(fragment);
 };
 
-createMapCards(mockData);
+createMapCards(mockData);*/
+
+var mapPins = document.querySelectorAll('.map__pin');
+
+mapPins.forEach(function (item) {
+  item.addEventListener('click', function () {
+    item.classList.add('map__pin--active');
+  });
+});
 
 
