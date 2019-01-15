@@ -157,7 +157,7 @@ mapPin.addEventListener('mouseup', function () {
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-var createMapCard = function (data) {
+/* var createMapCard = function (data) {
   var mapCard = document.querySelector('#card')
     .content
     .querySelector('.map__card');
@@ -178,7 +178,7 @@ var createMapCard = function (data) {
   });
 
   return item;
-};
+};*/
 
 /* var createMapCards = function (data) {
   var fragment = document.createDocumentFragment();
@@ -193,12 +193,24 @@ var createMapCard = function (data) {
 
 createMapCards(mockData);*/
 
-var mapPins = document.querySelectorAll('.map__pin');
+/* var mapPins = document.querySelectorAll('.map__pin');
 
 mapPins.forEach(function (item) {
   item.addEventListener('click', function () {
     item.classList.add('map__pin--active');
   });
+});*/
+
+var mapPinList = document.querySelector('.map__pins');
+var mapPinItem = document.querySelectorAll('.map__pin');
+
+mapPinList.addEventListener('click', function (evt) {
+  var target = evt.target;
+  if ((target.tagName === 'BUTTON' || target.tagName === 'IMG') && target.className !== 'map__pin--main') {
+    target.classList.add('map__pin--active');
+  }
+
+  // mapPinItem.classList.add('map__pin--active');
 });
 
 
