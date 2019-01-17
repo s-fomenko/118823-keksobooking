@@ -101,17 +101,20 @@ var createPin = function (data) {
 
   var item = mapPin.cloneNode(true);
 
-  function handlePinClick(evt) {
-    evt.currentTarget.classList.toggle('map__pin--active');
-    createMapCards(mockData);
-  }
-
   item.style.left = data.location.x + 'px';
   item.style.top = data.location.y + 'px';
   item.querySelector('img').src = data.author.avatar;
   item.querySelector('img').alt = data.offer.type;
 
   item.addEventListener('click', handlePinClick);
+
+  function handlePinClick(evt) {
+    var cardItem = evt.target.src;
+    console.log(cardItem);
+    console.log(mockData);
+    evt.currentTarget.classList.toggle('map__pin--active');
+    createMapCards(mockData[1]);
+  }
 
   return item;
 };
@@ -191,12 +194,9 @@ var createMapCards = function (data) {
   var fragment = document.createDocumentFragment();
   var cardsArea = document.querySelector('body');
 
-  data.forEach(function (item) {
-    fragment.appendChild(createMapCard(item));
-  });
+  fragment.appendChild(createMapCard(data));
 
   cardsArea.appendChild(fragment);
 };
-
 
 
