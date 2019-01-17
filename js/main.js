@@ -101,6 +101,11 @@ var createPin = function (data) {
 
   var item = mapPin.cloneNode(true);
 
+  function handlePinClick(evt) {
+    evt.currentTarget.classList.toggle('map__pin--active');
+    createMapCards(mockData);
+  }
+
   item.style.left = data.location.x + 'px';
   item.style.top = data.location.y + 'px';
   item.querySelector('img').src = data.author.avatar;
@@ -121,10 +126,6 @@ var createPins = function (data) {
 
   mapArea.appendChild(fragment);
 };
-
-function handlePinClick(evt) {
-  evt.currentTarget.classList.toggle('map__pin--active');
-}
 
 var mockData = createMockData();
 
@@ -163,7 +164,7 @@ mapPin.addEventListener('mouseup', function () {
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-/* var createMapCard = function (data) {
+var createMapCard = function (data) {
   var mapCard = document.querySelector('#card')
     .content
     .querySelector('.map__card');
@@ -184,9 +185,9 @@ mapPin.addEventListener('mouseup', function () {
   });
 
   return item;
-};*/
+};
 
-/* var createMapCards = function (data) {
+var createMapCards = function (data) {
   var fragment = document.createDocumentFragment();
   var cardsArea = document.querySelector('body');
 
@@ -197,30 +198,5 @@ mapPin.addEventListener('mouseup', function () {
   cardsArea.appendChild(fragment);
 };
 
-createMapCards(mockData);*/
-
-/* var mapPins = document.querySelectorAll('.map__pin');
-
-mapPins.forEach(function (item) {
-  item.addEventListener('click', function () {
-    item.classList.add('map__pin--active');
-  });
-});*/
-
-// var mapPinList = document.querySelector('.map__pins');
-// var mapPinItem = document.querySelectorAll('.map__pin');
-//
-// mapPinList.addEventListener('click', function (evt) {
-//   var target = evt.target;
-//   console.log(evt.currentTarget);
-//
-//   if (target.tagName !== 'BUTTON') {
-//     target = target.closest('button');
-//   }
-//
-//   target.classList.toggle('map__pin--active');
-//
-//   // mapPinItem.classList.add('map__pin--active')
-// });
 
 
