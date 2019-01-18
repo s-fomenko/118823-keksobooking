@@ -109,11 +109,14 @@ var createPin = function (data) {
   item.addEventListener('click', handlePinClick);
 
   function handlePinClick(evt) {
-    var cardItem = evt.target.src;
-    console.log(cardItem);
-    console.log(mockData);
     evt.currentTarget.classList.toggle('map__pin--active');
-    createMapCards(mockData[1]);
+    var image = evt.currentTarget.querySelector('img');
+    var mockItem = mockData.find(function(mockDataItem) {
+      // return image.src.endsWith(mockDataItem.author.avatar); // es7
+      return image.src.indexOf(mockDataItem.author.avatar) === (image.src.length - mockDataItem.author.avatar.length);
+    });
+
+    createMapCards(mockItem);
   }
 
   return item;
