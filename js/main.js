@@ -112,7 +112,6 @@ var createPin = function (data) {
     evt.currentTarget.classList.toggle('map__pin--active');
     var image = evt.currentTarget.querySelector('img');
     var mockItem = mockData.find(function (mockDataItem) {
-      // return image.src.endsWith(mockDataItem.author.avatar); // es7
       return image.src.indexOf(mockDataItem.author.avatar) === (image.src.length - mockDataItem.author.avatar.length);
     });
 
@@ -183,6 +182,11 @@ var createMapCard = function (data) {
   item.querySelector('.popup__text--capacity').textContent = data.offer.rooms + ' комнаты для ' + data.offer.guests + ' гостей';
   item.querySelector('.popup__text--time').textContent = 'Заезд после ' + data.offer.checkin + ', выезд до ' + data.offer.checkout;
   item.querySelector('.popup__description').textContent = data.offer.description;
+  var buttonClose = item.querySelector('.popup__close');
+  buttonClose.addEventListener('click', function () {
+    item.classList.add('hidden');
+  });
+
   var popupPhoto = item.querySelectorAll('.popup__photo');
   popupPhoto.forEach(function (photoItem, i) {
     photoItem.src = data.offer.photos[i];
@@ -200,13 +204,15 @@ var createMapCards = function (data) {
   cardsArea.appendChild(fragment);
 };
 
-window.addEventListener('keydown', function (evt) {
+var closeArticleKeyDown = function (evt) {
   var article = document.querySelectorAll('.map__card');
-
   if (evt.keyCode === 27) {
     article.forEach(function (item) {
       item.classList.add('hidden');
     });
   }
-});
+};
+
+window.addEventListener('keydown', closeArticleKeyDown);
+
 
