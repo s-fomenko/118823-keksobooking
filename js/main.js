@@ -111,7 +111,7 @@ var createPin = function (data) {
   function handlePinClick(evt) {
     evt.currentTarget.classList.toggle('map__pin--active');
     var image = evt.currentTarget.querySelector('img');
-    var mockItem = mockData.find(function(mockDataItem) {
+    var mockItem = mockData.find(function (mockDataItem) {
       // return image.src.endsWith(mockDataItem.author.avatar); // es7
       return image.src.indexOf(mockDataItem.author.avatar) === (image.src.length - mockDataItem.author.avatar.length);
     });
@@ -168,8 +168,6 @@ mapPin.addEventListener('mouseup', function () {
   adForm.classList.remove('ad-form--disabled');
 });
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 var createMapCard = function (data) {
   var mapCard = document.querySelector('#card')
     .content
@@ -202,4 +200,13 @@ var createMapCards = function (data) {
   cardsArea.appendChild(fragment);
 };
 
+window.addEventListener('keydown', function (evt) {
+  var article = document.querySelectorAll('.map__card');
+
+  if (evt.keyCode === 27) {
+    article.forEach(function (item) {
+      item.classList.add('hidden');
+    });
+  }
+});
 
