@@ -41,27 +41,14 @@ var createMockData = function () {
     'http://o0.github.io/assets/images/tokyo/hotel3.jpg'
   ];
 
-  var createFeaturesList = function (arr) {
-    var newArray = [];
-    arr.filter(function (item) {
-      if (Math.floor(Math.random() * (6 - 1) + 1) < Math.floor(Math.random() * (6 - 1) + 1)) {
-        return item;
-      }
-      newArray.push(item);
-      return newArray;
-    });
-    return newArray;
-  };
-
-  var createPhotosList = function (arr) {
-
-    var compareRandom = function () {
-      return Math.random() - 0.5;
-    };
-
-    arr.sort(compareRandom);
-
-    return arr;
+  var shuffle = function (array) {
+    for (var i = array.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+    return array;
   };
 
   for (var i = 0; i < 8; i++) {
@@ -78,15 +65,17 @@ var createMockData = function () {
       'guests': Math.floor(Math.random() * 10),
       'checkin': time[Math.floor(Math.random() * time.length)],
       'checkout': time[Math.floor(Math.random() * time.length)],
-      'features': createFeaturesList(features),
+      'features': shuffle(features).slice(0, Math.floor(Math.random() * features.length + 1)),
       'description': '',
-      'photos': createPhotosList(photos)
+      'photos': shuffle(photos)
     };
 
     mockData.push(dataItem);
   }
   return mockData;
 };
+
+console.log(createMockData());
 
 var makeMapActive = function () {
   var pageMap = document.querySelector('.map');
