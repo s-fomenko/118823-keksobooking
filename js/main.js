@@ -65,7 +65,7 @@ var createMockData = function () {
       'guests': Math.floor(Math.random() * 10),
       'checkin': time[Math.floor(Math.random() * time.length)],
       'checkout': time[Math.floor(Math.random() * time.length)],
-      'features': shuffle(features).slice(0, Math.floor(Math.random() * features.length + 1)),
+      'features': shuffle(features).slice(0, Math.floor(Math.random() * (features.length + 1))),
       'description': '',
       'photos': shuffle(photos)
     };
